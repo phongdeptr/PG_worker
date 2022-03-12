@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/page_book"
+        android:enabled="true"
+        android:icon="@drawable/ic_books_24"
+        android:title="@string/nav_text_1"/>
+    <item
+        android:id="@+id/page_service"
+        android:enabled="true"
+        android:icon="@drawable/camera"
+        android:title="@string/nav_text_2"/>
+    <item
+        android:id="@+id/page_support"
+        android:enabled="true"
+        android:icon="@drawable/ic_support"
+        android:title="@string/nav_text_3"/>
+</menu>

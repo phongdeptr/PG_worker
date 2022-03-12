@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    app:cardElevation="10dp"
+    app:cardBackgroundColor="@color/blue_malibu"
+    android:layout_margin="4dp"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/ivServiceAvatar"
+            android:layout_height="match_parent"
+            android:layout_width="116dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/event_photo_al_2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="16dp" />
+
+
+        <TextView
+            android:id="@+id/tvServiceName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="152dp"
+            android:layout_marginTop="8dp"
+            android:text="Service A"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+            app:layout_anchorGravity="end|center_vertical"
+            app:layout_constraintStart_toStartOf="@id/ivServiceAvatar"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvBookedDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="152dp"
+            android:layout_marginTop="44dp"
+            android:text="Mar 23 2022"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            app:layout_anchorGravity="bottom"
+            app:layout_constraintStart_toStartOf="@id/ivServiceAvatar"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvBookedTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="152dp"
+            android:layout_marginTop="76dp"
+            android:text="22:03:22"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            app:layout_anchorGravity="bottom"
+            app:layout_constraintStart_toStartOf="@id/ivServiceAvatar"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvCheckInPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginStart="150dp"
+            android:layout_marginTop="120dp"
+            android:drawableStart="@drawable/ic_money_24"
+            android:drawablePadding="1dp"
+            android:text="80$"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            app:layout_constraintStart_toStartOf="@id/ivServiceAvatar"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipDetailAction"
+            style="@style/ShapeAppearanceOverlay.Material3.Chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="276dp"
+            android:layout_marginTop="144dp"
+            android:minWidth="90dp"
+            android:text="More Details"
+            android:textAllCaps="false"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            app:layout_anchor="@id/tvServiceName"
+            app:layout_anchorGravity="bottom|center"
+            app:layout_constraintStart_toStartOf="@id/ivServiceAvatar"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
