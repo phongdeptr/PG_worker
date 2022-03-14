@@ -10,13 +10,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.chip.Chip;
 import com.phonghtse140633.linlus_pg.MainActivity2;
 import com.phonghtse140633.linlus_pg.R;
 import com.phonghtse140633.linlus_pg.enums.BookStatus;
@@ -81,12 +81,12 @@ public class BookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
         SpannableString checkInDate;
         SpannableString checkInTime;
         SpannableString checkInPrice;
-        checkInDate = new SpannableString("Check in Date: " + book.getBookingDate().format(DateTimeFormatter.ofPattern("MMM dd yyyy")));
-        checkInDate.setSpan(new StyleSpan(Typeface.BOLD),0,"Check in Date:".length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
-        checkInTime = new SpannableString("Starting Time: " +  book.getStartingTime());
-        checkInTime.setSpan(new StyleSpan(Typeface.BOLD),0,"Starting Time:".length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
-        checkInPrice = new SpannableString("Booking price: " + book.getPrice() + "$");
-        checkInPrice.setSpan(new StyleSpan(Typeface.BOLD_ITALIC), 0, "Booking price: ".length(),Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        checkInDate = new SpannableString(book.getBookingDate().format(DateTimeFormatter.ofPattern("MMM dd yyyy")));
+//        checkInDate.setSpan(new StyleSpan(Typeface.BOLD),0,"Check in Date:".length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+        checkInTime = new SpannableString("" + book.getStartingTime());
+//        checkInTime.setSpan(new StyleSpan(Typeface.BOLD),0,"Starting Time:".length(), Spanned.SPAN_INCLUSIVE_INCLUSIVE);
+        checkInPrice = new SpannableString("" + book.getPrice());
+//        checkInPrice.setSpan(new StyleSpan(Typeface.BOLD_ITALIC), 0, "Booking price: ".length(),Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         if (holder != null) {
             switch (holder.getItemViewType()) {
                 case ACCEPTED: {
@@ -96,7 +96,7 @@ public class BookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
                     acceptBookViewHolder.tvBookedTime.setText(checkInTime);
                     acceptBookViewHolder.tvServiceName.setText(book.getBookingService().getName());
                     acceptBookViewHolder.tvCheckInPrice.setText(checkInPrice);
-                    acceptBookViewHolder.ivServiceAvatar.setImageResource(service.getRepresentativeImg());
+                    //acceptBookViewHolder.ivServiceAvatar.setImageResource(service.getRepresentativeImg());
                     acceptBookViewHolder.chipDetailAction.setOnClickListener((view -> {
                         onDetailed(book.getId());
                     }));
@@ -109,7 +109,7 @@ public class BookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
                     cancelBookViewHolder.tvBookedTime.setText(checkInTime);
                     cancelBookViewHolder.tvServiceName.setText(book.getBookingService().getName());
                     cancelBookViewHolder.tvCheckInPrice.setText(checkInPrice);
-                    cancelBookViewHolder.ivServiceAvatar.setImageResource(service.getRepresentativeImg());
+                    //cancelBookViewHolder.ivServiceAvatar.setImageResource(service.getRepresentativeImg());
                     break;
                 }
                 case PENDING: {
@@ -129,7 +129,7 @@ public class BookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
                     completeBookViewHolder.tvBookedTime.setText(checkInTime);
                     completeBookViewHolder.tvServiceName.setText(book.getBookingService().getName());
                     completeBookViewHolder.tvCheckInPrice.setText(checkInPrice);
-                    completeBookViewHolder.ivServiceAvatar.setImageResource(service.getRepresentativeImg());
+                    //completeBookViewHolder.ivServiceAvatar.setImageResource(service.getRepresentativeImg());
                     break;
                 }
             }
@@ -198,7 +198,7 @@ public class BookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
         TextView tvBookedTime, tvBookedDate;
         TextView tvCheckInPrice;
         ImageView ivServiceAvatar;
-        Chip chipDetailAction;
+        ImageButton chipDetailAction;
         public AcceptBookViewHolder(@NonNull View itemView) {
             super(itemView);
             tvServiceName = itemView.findViewById(R.id.tvServiceName);
@@ -206,7 +206,7 @@ public class BookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
             tvBookedTime = itemView.findViewById(R.id.tvBookedTime);
             tvCheckInPrice = itemView.findViewById(R.id.tvCheckInPrice);
             ivServiceAvatar = itemView.findViewById(R.id.ivServiceAvatar);
-            chipDetailAction = itemView.findViewById(R.id.chipDetailAction);
+            chipDetailAction = itemView.findViewById(R.id.btnMoreInfo);
         }
     }
 

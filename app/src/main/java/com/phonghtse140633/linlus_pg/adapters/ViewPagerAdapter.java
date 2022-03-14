@@ -33,10 +33,6 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
             }
             case 2: {
                 return fragments.get(2);
-
-            }
-            case 3: {
-                return fragments.get(3);
             }
         }
         return null;
@@ -44,7 +40,7 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return 3;
     }
 
 
@@ -53,20 +49,16 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     public CharSequence getPageTitle(int position) {
         switch (position) {
             case 0: {
-                return "Accepted";
+                return "Active";
             }
             case 1: {
-                return "Pending";
+                return "Completed";
             }
             case 2: {
                 return "Canceled";
-
-            }
-            case 3: {
-                return "Completed";
             }
         }
-        return "Accepted";
+        return "Active";
     }
 
     public void addFragment(Fragment fragment, String title) {

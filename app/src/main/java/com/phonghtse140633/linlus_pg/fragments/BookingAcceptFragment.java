@@ -1,50 +1,36 @@
 package com.phonghtse140633.linlus_pg.fragments;
 
 import static com.phonghtse140633.linlus_pg.constants.Constants.MAPVIEW_BUNDLE_KEY;
-import static com.phonghtse140633.linlus_pg.constants.Constants.PERMISSIONS_REQUEST_ENABLE_GPS;
 
-import android.Manifest;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.OnMapReadyCallback;
 import com.phonghtse140633.linlus_pg.R;
 import com.phonghtse140633.linlus_pg.adapters.BookAdapter;
 import com.phonghtse140633.linlus_pg.enums.BookStatus;
 import com.phonghtse140633.linlus_pg.model.Book;
 import com.phonghtse140633.linlus_pg.utils.Utils;
-import com.phonghtse140633.linlus_pg.constants.Constants;
+
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link BookingAcceptFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class BookingAcceptFragment extends Fragment {
     private RecyclerView rvBook;
     private BookAdapter bookAdapter;
-    private List<Book> books = null;
+    private List<Book> books = new ArrayList<>();
     private MapView mMapView;
+    private CheckBox cbPending, cbAccepted;
 
     private boolean mLocationPermissionGranted= false;
 
@@ -61,31 +47,6 @@ public class BookingAcceptFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment BookingAcceptFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static BookingAcceptFragment newInstance(String param1, String param2) {
-        BookingAcceptFragment fragment = new BookingAcceptFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-
-    @Override
-    public void onResume() {
-        ((AppCompatActivity) getActivity()).getSupportActionBar().show();
-        super.onResume();
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,8 +55,6 @@ public class BookingAcceptFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -107,11 +66,44 @@ public class BookingAcceptFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         rvBook = view.findViewById(R.id.rvBook);
-        books = Utils.getBooksByStatus(BookStatus.ACCEPTED);
+        cbPending = view.findViewById(R.id.cbPending);
+        cbAccepted = view.findViewById(R.id.cbAccepted);
+
+        loadBookings(books);
+
+        cbPending.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (cbPending.isChecked()) {
+                    books.addAll(Utils.getBooksByStatus(BookStatus.PENDING));
+                }
+                else {
+                    books.removeAll(Utils.getBooksByStatus(BookStatus.PENDING));
+                }
+                bookAdapter.notifyDataSetChanged();
+            }
+        });
+
+        cbAccepted.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (cbAccepted.isChecked()) {
+                    books.addAll(Utils.getBooksByStatus(BookStatus.ACCEPTED));
+                }
+                else {
+                    books.removeAll(Utils.getBooksByStatus(BookStatus.ACCEPTED));
+                }
+                bookAdapter.notifyDataSetChanged();
+            }
+        });
+
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+    private void loadBookings(List<Book> books) {
         bookAdapter = new BookAdapter(getContext(), books);
         rvBook.setAdapter(bookAdapter);
-        rvBook.setLayoutManager(new LinearLayoutManager(view.getContext(),LinearLayoutManager.VERTICAL,false));
-        super.onViewCreated(view, savedInstanceState);
+        rvBook.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
     }
 
 

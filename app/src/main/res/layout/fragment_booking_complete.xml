@@ -1,34 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context=".fragments.BookingComplete">
 
     <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="5dp"
+        android:textSize="18sp"
+        android:paddingStart="10dp"
+        android:textColor="@color/green"
+        android:textStyle="bold"
+        android:text="Completed booking orders"/>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <com.google.android.material.textfield.TextInputLayout
-            app:endIconMode="custom"
-            app:endIconDrawable="@drawable/ic_search_24"
-            app:endIconTint="@color/blue_lavender"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etServiceSearch"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-        </com.google.android.material.textfield.TextInputLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvBook"
             android:layout_margin="0dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
-</FrameLayout>
+</LinearLayout>

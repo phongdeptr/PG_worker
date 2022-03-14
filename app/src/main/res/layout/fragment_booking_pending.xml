@@ -11,19 +11,6 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <com.google.android.material.textfield.TextInputLayout
-            app:endIconMode="custom"
-            app:endIconDrawable="@drawable/ic_search_24"
-            app:endIconTint="@color/blue_lavender"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etServiceSearch"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-        </com.google.android.material.textfield.TextInputLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvBook"
             android:layout_margin="0dp"
