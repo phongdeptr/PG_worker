@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -34,15 +33,6 @@ public class BookingAcceptFragment extends Fragment {
 
     private boolean mLocationPermissionGranted= false;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     public BookingAcceptFragment() {
         // Required empty public constructor
     }
@@ -50,10 +40,6 @@ public class BookingAcceptFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -68,6 +54,9 @@ public class BookingAcceptFragment extends Fragment {
         rvBook = view.findViewById(R.id.rvBook);
         cbPending = view.findViewById(R.id.cbPending);
         cbAccepted = view.findViewById(R.id.cbAccepted);
+
+        books.addAll(Utils.getBooksByStatus(BookStatus.PENDING));
+        books.addAll(Utils.getBooksByStatus(BookStatus.ACCEPTED));
 
         loadBookings(books);
 
@@ -98,6 +87,10 @@ public class BookingAcceptFragment extends Fragment {
         });
 
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    private void loadPendingBookings() {
+
     }
 
     private void loadBookings(List<Book> books) {

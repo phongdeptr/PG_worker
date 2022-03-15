@@ -23,11 +23,11 @@ public class Utils {
         List<PhotoService> services = getServices();
         if (books.isEmpty()) {
             books.add(new Book(1, services.get(1), LocalDate.parse("2022-12-03"), LocalTime.of(8, 30), 82, BookStatus.ACCEPTED, "Ho Guom"));
-            books.add(new Book(2, services.get(2), LocalDate.parse("2022-12-04"), LocalTime.of(8, 30), 83, BookStatus.PENDING, "Ho Guom"));
+            books.add(new Book(2, services.get(0), LocalDate.parse("2022-12-04"), LocalTime.of(8, 30), 83, BookStatus.PENDING, "Ho Guom"));
             books.add(new Book(3, services.get(2), LocalDate.parse("2022-12-05"), LocalTime.of(8, 30), 84, BookStatus.PENDING, "Ho Guom"));
-            books.add(new Book(4, services.get(2), LocalDate.parse("2022-12-06"), LocalTime.of(8, 30), 85, BookStatus.ACCEPTED, "Ho Guom"));
-            books.add(new Book(5, services.get(1), LocalDate.parse("2022-12-07"), LocalTime.of(8, 30), 86, BookStatus.CANCELED, "Ho Guom"));
-            books.add(new Book(6, services.get(3), LocalDate.parse("2022-12-08"), LocalTime.of(8, 30), 87, BookStatus.COMPLETED, "Ho Guom"));
+            books.add(new Book(4, services.get(3), LocalDate.parse("2022-12-06"), LocalTime.of(8, 30), 85, BookStatus.ACCEPTED, "Ho Guom"));
+            books.add(new Book(5, services.get(4), LocalDate.parse("2022-12-07"), LocalTime.of(8, 30), 86, BookStatus.CANCELED, "Ho Guom"));
+            books.add(new Book(6, services.get(1), LocalDate.parse("2022-12-08"), LocalTime.of(8, 30), 87, BookStatus.COMPLETED, "Ho Guom"));
             books.add(new Book(7, services.get(4), LocalDate.parse("2022-12-01"), LocalTime.of(8, 30), 88, BookStatus.COMPLETED, "Ho Guom"));
 //            books.add(new Book(8, services.get(4), LocalDate.parse("2022-08-01"), LocalTime.of(8, 30), 89, BookStatus.ACCEPTED, "Ho Guom"));
 //            books.add(new Book(9, services.get(1), LocalDate.parse("2022-10-03"), LocalTime.of(8, 30), 91, BookStatus.ACCEPTED, "Ho Guom"));
@@ -68,10 +68,10 @@ public class Utils {
     public static List<PhotoService> getServices() {
         if (services.isEmpty()) {
             services.add(new PhotoService(1l, "Event Party Moment", "Event", 100, 4.6f, R.drawable.event_photo_al_2, null, 1));
-            services.add(new PhotoService(2l, "Birthday Party Moment", "Event", 100, 4.4f, R.drawable.event_photo_al_3, null, 1));
-            services.add(new PhotoService(3l, "Food Marketing Capture", "Marketing", 100, 4.2f, R.drawable.food_photo_1, null, 1));
-            services.add(new PhotoService(4l, "Landscape Capture 1", "Landscape", 100, 4.1f, R.drawable.landscape_al_1, null, 1));
-            services.add(new PhotoService(5l, "Landscape Capture 2", "Landscape", 100, 4.3f, R.drawable.event_photo_al_3, null, 1));
+            services.add(new PhotoService(2l, "Birthday Party Moment", "Event", 100, 4.4f, R.drawable.event_photo_al_5, null, 1));
+            services.add(new PhotoService(3l, "Food Marketing Capture", "Marketing", 100, 4.2f, R.drawable.food_photo_3, null, 1));
+            services.add(new PhotoService(4l, "Landscape Capture", "Landscape", 100, 4.1f, R.drawable.landscape_al_1, null, 1));
+            services.add(new PhotoService(5l, "Family Moment", "Family", 100, 4.3f, R.drawable.family_photo_2, null, 1));
         }
         return services;
     }
