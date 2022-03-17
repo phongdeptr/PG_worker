@@ -35,7 +35,7 @@
         android:layout_marginTop="5dp"
         android:autofillHints="serviceName"
         android:background="@drawable/edit_text_background"
-        android:hint="@string/enter_username"
+        android:hint="Input your service name"
         android:inputType="textPersonName"
         android:paddingHorizontal="10dp"
         android:paddingVertical="15dp"
