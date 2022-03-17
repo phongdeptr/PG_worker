@@ -118,10 +118,10 @@ public class BookInfo extends AppCompatActivity implements IBookingAction {
         deliveryFormatOptions.setText(builder.toString());
         if(book.getStatus().equals(BookStatus.ACCEPTED)){
             btnCancel.setVisibility(View.VISIBLE);
-            btnCancel.setOnClickListener(view -> {openDialog();});
         }else{
 
         }
+        btnCancel.setOnClickListener(view -> {openDialog();});
     }
 
     @Override
