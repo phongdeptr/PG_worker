@@ -46,4 +46,10 @@
     <string name="start_time">Starting time:</string>
     <string name="end_time">Ending time:</string>
     <string name="receivable">Receivable:</string>
+    <string-array name="unit_options">
+        <item>Hour</item>
+        <item>Clip</item>
+        <item>Album</item>
+        <item>Picture</item>
+    </string-array>
 </resources>
