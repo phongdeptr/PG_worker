@@ -1,11 +1,9 @@
 package com.phonghtse140633.linlus_pg.adapters;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +13,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.button.MaterialButton;
+import com.phonghtse140633.linlus_pg.BookInfo;
 import com.phonghtse140633.linlus_pg.MainActivity2;
 import com.phonghtse140633.linlus_pg.R;
 import com.phonghtse140633.linlus_pg.enums.BookStatus;
@@ -24,6 +25,8 @@ import com.phonghtse140633.linlus_pg.interfaces.IBookingAction;
 import com.phonghtse140633.linlus_pg.model.Book;
 import com.phonghtse140633.linlus_pg.model.PhotoService;
 import com.phonghtse140633.linlus_pg.utils.Utils;
+
+import org.w3c.dom.Text;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -36,8 +39,6 @@ public class BookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
     private static final int CANCELED = 3;
     private static final int COMPLETED = 4;
     private static final int PENDING = 5;
-
-
     public BookAdapter(Context context, List<Book> bookList) {
         this.bookList = bookList;
         this.context = context;
@@ -120,6 +121,15 @@ public class BookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
                     pendingBookViewHolder.tvServiceName.setText(book.getBookingService().getName());
                     pendingBookViewHolder.tvCheckInPrice.setText(checkInPrice);
                     pendingBookViewHolder.ivServiceAvatar.setImageResource(service.getRepresentativeImg());
+                    pendingBookViewHolder.pending_item_container.setOnClickListener((view -> {
+                        onDetailed(book.getId());
+                    }));
+                    pendingBookViewHolder.btnAccept.setOnClickListener(view -> {
+                        onAccepted(book.getId());
+                    });
+                    pendingBookViewHolder.btnReject.setOnClickListener(view -> {
+                        onRejected(book.getId());
+                    });
                     break;
                 }
                 case COMPLETED: {
@@ -129,7 +139,11 @@ public class BookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
                     completeBookViewHolder.tvBookedTime.setText(checkInTime);
                     completeBookViewHolder.tvServiceName.setText(book.getBookingService().getName());
                     completeBookViewHolder.tvCheckInPrice.setText(checkInPrice);
-                    //completeBookViewHolder.ivServiceAvatar.setImageResource(service.getRepresentativeImg());
+                    completeBookViewHolder.btnMoreInfo.setOnClickListener(view -> {
+                        onDetailed(book.getId());
+                        Log.w("Id: ",book.getId()+"");
+                        Log.w("status:" , book.getStatus().name());
+                    });
                     break;
                 }
             }
@@ -157,7 +171,25 @@ public class BookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
     @Override
     public void onDetailed(Object id) {
         Book book = Utils.getBooking((int) id);
-        Intent intent = new Intent(context, MainActivity2.class);
+        Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.activity_book_info);
+        TextView captureLocation = dialog.findViewById(R.id.tvCaptureLocValue);
+        TextView checkInDateTime = dialog.findViewById(R.id.tvCheckInTimeValues);
+        TextView checkOutDateTime = dialog.findViewById(R.id.tvCheckOutTimeValues);
+        TextView serviceName = dialog.findViewById(R.id.tvCheckInServiceValue);
+        TextView deliveryDate = dialog.findViewById(R.id.tvDeliveryDateValue);
+        TextView deliveryLocation = dialog.findViewById(R.id.tvDeliveryLocation);
+        serviceName.setText(book.getBookingService().getName());
+        captureLocation.setText(book.getLocation());
+        deliveryLocation.setText(book.getDeliveryLocation());
+        deliveryDate.setText(book.getDeliveryDate().format(DateTimeFormatter.ofPattern("MMM dd, yyyy")));
+        checkInDateTime.setText(book.getBookingDate().format(DateTimeFormatter.ofPattern("MMM dd,yyyy")) + " "
+                + book.getStartingTime().format(DateTimeFormatter.ofPattern("hh:ss")));
+        checkOutDateTime.setText(book.getBookingDate().plusDays(2).format(DateTimeFormatter.ofPattern("MMM dd,yyyy")));
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        //dialog.show();
+        //dialog.setCanceledOnTouchOutside(true);
+        Intent intent = new Intent(context, BookInfo.class);
         intent.putExtra("bookId", book.getId());
         context.startActivity(intent);
     }
@@ -231,6 +263,8 @@ public class BookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
         TextView tvBookedTime, tvBookedDate;
         TextView tvCheckInPrice;
         ImageView ivServiceAvatar;
+        CardView pending_item_container;
+        ImageButton btnAccept, btnReject;
         public PendingBookViewHolder(@NonNull View itemView) {
             super(itemView);
             tvServiceName = itemView.findViewById(R.id.tvServiceName);
@@ -238,7 +272,9 @@ public class BookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
             tvBookedTime = itemView.findViewById(R.id.tvBookedTime);
             tvCheckInPrice = itemView.findViewById(R.id.tvCheckInPrice);
             ivServiceAvatar = itemView.findViewById(R.id.ivServiceAvatar);
-
+            pending_item_container = itemView.findViewById(R.id.pending_item_container);
+            btnAccept = itemView.findViewById(R.id.btnAccept);
+            btnReject = itemView.findViewById(R.id.btnReject);
         }
     }
 
@@ -264,6 +300,7 @@ public class BookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
         TextView tvBookedTime, tvBookedDate;
         TextView tvCheckInPrice;
         ImageView ivServiceAvatar;
+        ImageButton btnMoreInfo;
         public CompleteBookViewHolder(@NonNull View itemView) {
             super(itemView);
             tvServiceName = itemView.findViewById(R.id.tvServiceName);
@@ -271,6 +308,7 @@ public class BookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
             tvBookedTime = itemView.findViewById(R.id.tvBookedTime);
             tvCheckInPrice = itemView.findViewById(R.id.tvCheckInPrice);
             ivServiceAvatar = itemView.findViewById(R.id.ivServiceAvatar);
+            btnMoreInfo = itemView.findViewById(R.id.btnMoreInfo);
         }
     }
 

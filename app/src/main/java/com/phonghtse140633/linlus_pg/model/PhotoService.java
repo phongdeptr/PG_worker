@@ -11,6 +11,7 @@ public class PhotoService {
     private int representativeImg;
     private List<Integer> bannerUrls;
     private int idCategory;
+    private int idPG;
 
     public PhotoService() {
     }

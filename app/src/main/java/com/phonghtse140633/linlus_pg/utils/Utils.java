@@ -5,20 +5,24 @@ import android.app.Service;
 import com.phonghtse140633.linlus_pg.R;
 import com.phonghtse140633.linlus_pg.enums.BookStatus;
 import com.phonghtse140633.linlus_pg.model.Book;
+import com.phonghtse140633.linlus_pg.model.Customer;
 import com.phonghtse140633.linlus_pg.model.PhotoService;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class Utils {
     private static List<Book> books = new ArrayList<>();
     private static List<PhotoService> services = new ArrayList<>();
-
+    public static List<Customer> customers = new ArrayList<>();
     public static List<Book> getBooks() {
         List<PhotoService> services = getServices();
         if (books.isEmpty()) {
@@ -29,40 +33,39 @@ public class Utils {
             books.add(new Book(5, services.get(1), LocalDate.parse("2022-12-07"), LocalTime.of(8, 30), 86, BookStatus.CANCELED, "Ho Guom"));
             books.add(new Book(6, services.get(3), LocalDate.parse("2022-12-08"), LocalTime.of(8, 30), 87, BookStatus.COMPLETED, "Ho Guom"));
             books.add(new Book(7, services.get(4), LocalDate.parse("2022-12-01"), LocalTime.of(8, 30), 88, BookStatus.COMPLETED, "Ho Guom"));
-//            books.add(new Book(8, services.get(4), LocalDate.parse("2022-08-01"), LocalTime.of(8, 30), 89, BookStatus.ACCEPTED, "Ho Guom"));
-//            books.add(new Book(9, services.get(1), LocalDate.parse("2022-10-03"), LocalTime.of(8, 30), 91, BookStatus.ACCEPTED, "Ho Guom"));
-//            books.add(new Book(10, services.get(2), LocalDate.parse("2022-10-03"), LocalTime.of(8, 30), 93, BookStatus.ACCEPTED, "Ho Guom"));
-//            books.add(new Book(11, services.get(3), LocalDate.parse("2022-10-03"), LocalTime.of(8, 30), 95, BookStatus.ACCEPTED, "Ho Guom"));
-//            books.add(new Book(12, services.get(4), LocalDate.parse("2022-04-03"), LocalTime.of(8, 30), 97, BookStatus.ACCEPTED, "Ho Guom"));
-//            books.add(new Book(13, services.get(4), LocalDate.parse("2022-04-03"), LocalTime.of(8, 30), 99, BookStatus.ACCEPTED, "Ho Guom"));
-//            books.add(new Book(14, services.get(4), LocalDate.parse("2022-04-03"), LocalTime.of(8, 30), 102, BookStatus.ACCEPTED, "Ho Guom"));
-//            books.add(new Book(15, services.get(4), LocalDate.parse("2022-04-03"), LocalTime.of(8, 30), 103, BookStatus.ACCEPTED, "Ho Guom"));
-//            books.add(new Book(16, services.get(3), LocalDate.parse("2022-04-03"), LocalTime.of(8, 30), 200, BookStatus.ACCEPTED, "Ho Guom"));
-//            books.add(new Book(17, services.get(3), LocalDate.parse("2022-04-03"), LocalTime.of(8, 30), 820, BookStatus.ACCEPTED, "Ho Guom"));
-//            books.add(new Book(18, services.get(4), LocalDate.parse("2022-04-03"), LocalTime.of(8, 30), 810, BookStatus.ACCEPTED, "Ho Guom"));
-//            books.add(new Book(19, services.get(1), LocalDate.parse("2022-04-03"), LocalTime.of(8, 30), 804, BookStatus.ACCEPTED, "Ho Guom"));
-//            books.add(new Book(20, services.get(1), LocalDate.parse("2022-04-03"), LocalTime.of(8, 30), 805, BookStatus.ACCEPTED, "Ho Guom"));
-//            books.add(new Book(22, services.get(2), LocalDate.parse("2022-04-03"), LocalTime.of(8, 30), 801, BookStatus.ACCEPTED, "Ho Guom"));
-//            books.add(new Book(23, services.get(2), LocalDate.parse("2022-04-03"), LocalTime.of(8, 30), 802, BookStatus.ACCEPTED, "Ho Guom"));
-//            books.add(new Book(24, services.get(2), LocalDate.parse("2022-04-03"), LocalTime.of(8, 30), 803, BookStatus.ACCEPTED, "Ho Guom"));
-//            books.add(new Book(25, services.get(2), LocalDate.parse("2022-04-03"), LocalTime.of(8, 30), 804, BookStatus.ACCEPTED, "Ho Guom"));
-//            books.add(new Book(26, services.get(2), LocalDate.parse("2022-04-03"), LocalTime.of(8, 30), 803, BookStatus.ACCEPTED, "Ho Guom"));
-//            books.add(new Book(27, services.get(2), LocalDate.parse("2022-03-03"), LocalTime.of(8, 30), 801, BookStatus.COMPLETED, "Ho Guom"));
-//            books.add(new Book(28, services.get(3), LocalDate.parse("2022-03-03"), LocalTime.of(8, 30), 802, BookStatus.COMPLETED, "Ho Guom"));
-//            books.add(new Book(29, services.get(3), LocalDate.parse("2022-03-03"), LocalTime.of(8, 30), 801, BookStatus.COMPLETED, "Ho Guom"));
-//            books.add(new Book(30, services.get(3), LocalDate.parse("2022-03-03"), LocalTime.of(8, 30), 801, BookStatus.COMPLETED, "Ho Guom"));
-//            books.add(new Book(31, services.get(3), LocalDate.parse("2022-03-03"), LocalTime.of(8, 30), 801, BookStatus.COMPLETED, "Ho Guom"));
-//            books.add(new Book(32, services.get(3), LocalDate.parse("2022-03-03"), LocalTime.of(8, 30), 801, BookStatus.ACCEPTED, "Ho Guom"));
-//            books.add(new Book(33, services.get(3), LocalDate.parse("2022-03-03"), LocalTime.of(8, 30), 801, BookStatus.CANCELED, "Ho Guom"));
-//            books.add(new Book(34, services.get(3), LocalDate.parse("2022-04-03"), LocalTime.of(8, 30), 801, BookStatus.CANCELED, "Ho Guom"));
-//            books.add(new Book(35, services.get(3), LocalDate.parse("2022-04-03"), LocalTime.of(8, 30), 780, BookStatus.CANCELED, "Ho Guom"));
-//            books.add(new Book(36, services.get(3), LocalDate.parse("2022-04-03"), LocalTime.of(8, 30), 680, BookStatus.CANCELED, "Ho Guom"));
-//            books.add(new Book(37, services.get(3), LocalDate.parse("2022-04-03"), LocalTime.of(8, 30), 580, BookStatus.ACCEPTED, "Ho Guom"));
-//            books.add(new Book(38, services.get(3), LocalDate.parse("2022-04-03"), LocalTime.of(8, 30), 480, BookStatus.ACCEPTED, "Ho Guom"));
-//            books.add(new Book(39, services.get(3), LocalDate.parse("2022-04-03"), LocalTime.of(8, 30), 380, BookStatus.ACCEPTED, "Ho Guom"));
-//            books.add(new Book(40, services.get(3), LocalDate.parse("2022-04-03"), LocalTime.of(8, 30), 280, BookStatus.ACCEPTED, "Ho Guom"));
+            books.add(new Book(40, services.get(3), LocalDate.parse("2022-04-03"), LocalTime.of(8, 30), 280, BookStatus.ACCEPTED, "Ho Guom"));
         }
+        Map<Integer, String> location = new HashMap<>();
+        location.put(1, "23 Lac Long Quan Quan 11, TPHCM");
+        location.put(2, "23 Cach Mang Thang Tam, TPHCM");
+        location.put(3, "23 Hoang Kieu, Ha Noi");
+        getCustomers();
+        books.stream().forEach(book -> {
+
+            Random random = new Random();
+            int range = random.nextInt(10 - 1) + 1;
+            int locationChoice = random.nextInt(3 - 1) + 1;
+            int customerChoice = random.nextInt(customers.size() - 0) + 0;
+            book.setDeliveryDate(LocalDate.now().plusDays(range));
+            book.setDeliveryLocation(location.get(locationChoice));
+            book.setCustomer(customers.get(customerChoice));
+        });
         return books;
+    }
+
+    public static List<Customer> getCustomers(){
+        if(customers == null){
+            customers = new ArrayList<>();
+        }else if (customers.isEmpty()){
+            customers.add(new Customer(1, "Hoang Phong", R.drawable.avatar));
+            customers.add(new Customer(2, "Kim Phung", R.drawable.avatar));
+            customers.add(new Customer(3, "Chi Huy", R.drawable.avatar));
+            customers.add(new Customer(4, "Phuong Thao", R.drawable.avatar));
+            customers.add(new Customer(5, "Anh Quoc", R.drawable.avatar));
+            customers.add(new Customer(6, "Hung Dung", R.drawable.avatar));
+            customers.add(new Customer(7, "Tung Chua", R.drawable.avatar));
+        }
+        return customers;
     }
 
     public static List<PhotoService> getServices() {

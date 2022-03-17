@@ -68,9 +68,7 @@ public class BookingAcceptFragment extends Fragment {
         rvBook = view.findViewById(R.id.rvBook);
         cbPending = view.findViewById(R.id.cbPending);
         cbAccepted = view.findViewById(R.id.cbAccepted);
-
         loadBookings(books);
-
         cbPending.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -61,7 +61,7 @@
                     android:id="@+id/profileImage"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/avatar_small"
+                    android:src="@drawable/avatar"
                     android:background="@color/white"
                     android:scaleType="centerCrop"
                     />

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pending_item_container"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -131,6 +132,7 @@
                 android:id="@+id/price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
                 android:layout_marginTop="8dp"
                 android:text="Wages:"
                 android:textSize="14sp"
@@ -151,12 +153,13 @@
                     android:id="@+id/cvAvatar"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    app:cardCornerRadius="50dp">
+                    app:cardElevation="0dp"
+                    app:cardCornerRadius="20dp">
 
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
+                        android:scaleType="fitXY"
                         android:src="@drawable/furniture_photo" />
 
                 </androidx.cardview.widget.CardView>
@@ -167,8 +170,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
                     android:layout_weight="1"
+                    android:maxLength="60"
                     android:lines="2"
-                    android:text="Teaa gkjdgkmkfmdksm sdkffdf fdf"
+                    android:text="Phong Hoang"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="@+id/cvAvatar"
@@ -182,16 +186,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="8dp"
                 android:drawableStart="@drawable/ic_money_24"
                 android:drawableTint="@color/blue"
-                android:text="80"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:text="8033"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
                 android:textColor="@color/blue"
                 android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="@+id/info2"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/price" />
+                app:layout_constraintTop_toBottomOf="@+id/tvBookedEndDate"
+                app:layout_constraintVertical_bias="0.828" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -207,6 +212,7 @@
             app:layout_constraintWidth_percent="0.12">
 
             <ImageButton
+                android:id="@+id/btnAccept"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -218,6 +224,7 @@
                 tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
             <ImageButton
+                android:id="@+id/btnReject"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"

@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BookInfo">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/ivServiceAvatar"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/event_photo_al_2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardUseAvatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                app:cardBackgroundColor="#80FFFFFF"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivServiceAvatar">
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="fill_vertical"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/avatar" />
+            </com.google.android.material.card.MaterialCardView>
+            <TextView
+                android:id="@+id/tvBookerName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="36dp"
+                android:lines="1"
+                android:maxLength="30"
+                android:text="Booker: Phong Hoang"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toEndOf="@id/cardUseAvatar"
+                app:layout_constraintTop_toTopOf="@id/cardUseAvatar" />
+
+
+            <TextView
+                android:id="@+id/tvBookStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="120dp"
+                android:layout_marginTop="20dp"
+                android:lines="1"
+                android:maxLength="30"
+                android:text="Status"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toEndOf="@id/tvCheckInService"
+                app:layout_constraintTop_toBottomOf="@id/cardUseAvatar" />
+
+            <TextView
+                android:id="@+id/tvBookStatusValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="10dp"
+                android:lines="1"
+                android:maxLength="30"
+                android:text="Pending"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="@id/tvBookStatus"
+                app:layout_constraintTop_toBottomOf="@id/tvBookStatus" />
+
+
+            <TextView
+                android:id="@+id/tvCheckInService"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@drawable/ic_service"
+                android:drawablePadding="10dp"
+                android:lines="1"
+                android:maxLength="30"
+                android:text="Service: "
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardUseAvatar" />
+            <TextView
+                android:id="@+id/tvCheckInServiceValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:lines="1"
+                android:maxLength="30"
+                android:text="Food Capture Service"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvCheckInService" />
+
+            <TextView
+                android:id="@+id/tvCheckInTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@drawable/ic_books_24"
+                android:drawablePadding="10dp"
+                android:maxWidth="200dp"
+                android:text="Check-in Time:"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvCheckInServiceValue" />
+            <TextView
+                android:id="@+id/tvCheckInTimeValues"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="22-12-2022 8:30"
+                app:layout_constraintStart_toStartOf="@id/tvCheckInTime"
+                app:layout_constraintTop_toBottomOf="@id/tvCheckInTime" />
+
+            <TextView
+                android:id="@+id/tvCheckOutTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="120dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:drawableStart="@drawable/ic_glass_time"
+                android:drawablePadding="10dp"
+                android:maxWidth="200dp"
+                android:text="Finished Time:"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tvCheckInTime"
+                app:layout_constraintTop_toBottomOf="@id/tvCheckInServiceValue" />
+            <TextView
+                android:id="@+id/tvCheckOutTimeValues"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="10dp"
+                android:text="22-12-2022 8:30"
+                app:layout_constraintStart_toStartOf="@id/tvCheckOutTime"
+                app:layout_constraintTop_toBottomOf="@id/tvCheckOutTime" />
+
+            <TextView
+                android:id="@+id/tvDeliveryDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@drawable/ic_shipping"
+                android:drawablePadding="10dp"
+                android:text="Delivery Product Date:"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvCheckInTimeValues" />
+            <TextView
+                android:id="@+id/tvDeliveryDateValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="26-12-2022:"
+                app:layout_constraintStart_toStartOf="@id/tvDeliveryDate"
+                app:layout_constraintTop_toBottomOf="@id/tvDeliveryDate" />
+
+            <TextView
+                android:id="@+id/tvCheckInPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="72dp"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@drawable/ic_money"
+                android:drawablePadding="10dp"
+                android:text="Total Price:"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@id/tvDeliveryDate"
+                app:layout_constraintTop_toBottomOf="@id/tvCheckOutTimeValues" />
+            <TextView
+                android:id="@+id/tvCheckInPriceValues"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="20000 USD"
+                app:layout_constraintStart_toStartOf="@id/tvCheckInPrice"
+                app:layout_constraintTop_toBottomOf="@id/tvCheckInPrice" />
+
+            <TextView
+                android:id="@+id/tvDeliveryLoc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@drawable/ic_package_represent"
+                android:drawablePadding="10dp"
+                android:text="Delivery Images Location:"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvCaptureLocValue" />
+            <TextView
+                android:id="@+id/tvDeliveryLocation"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:lines="2"
+                android:text="23 hahaha, hehehe, hohoho"
+                app:layout_constraintStart_toStartOf="@id/tvDeliveryLoc"
+                app:layout_constraintTop_toBottomOf="@id/tvDeliveryLoc" />
+
+            <TextView
+                android:id="@+id/tvCaptureLoc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:drawableStart="@drawable/ic_location"
+                android:drawablePadding="10dp"
+                android:text="Capture Image Location:"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvDeliveryDateValue" />
+            <TextView
+                android:id="@+id/tvCaptureLocValue"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:lines="2"
+                android:text="2222222/33333 Hahahahahahaahahahahahaha"
+                app:layout_constraintStart_toStartOf="@id/tvCaptureLoc"
+                app:layout_constraintTop_toBottomOf="@id/tvCaptureLoc" />
+
+            <TextView
+                android:id="@+id/tvDeliveryFormat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="Delivery Format"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvDeliveryLocation" />
+
+            <TextView
+                android:id="@+id/tvDeliveryFormatOptions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Requirement 1"
+                app:layout_constraintStart_toStartOf="@id/tvDeliveryFormat"
+                app:layout_constraintTop_toBottomOf="@id/tvDeliveryFormat" />
+            <View
+                android:id="@+id/footerSpace"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDeliveryFormatOptions"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_gravity="bottom">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.google.android.material.button.MaterialButton
+                app:backgroundTint="@color/red"
+                android:id="@+id/btnCancel"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:tooltipText="Reject Book Request"
+                app:icon="@drawable/ic_book_cancel"
+                app:iconGravity="textStart"
+                android:text="Cancel"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="1"
+                />
+            <com.google.android.material.button.MaterialButton
+                app:backgroundTint="@color/blue"
+                android:id="@+id/btnAccept"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:tooltipText="Reject Book Request"
+                app:icon="@drawable/ic_book_cancel"
+                app:iconGravity="textStart"
+                android:text="Accept"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.5"
+                />
+            <com.google.android.material.button.MaterialButton
+                app:backgroundTint="@color/red"
+                android:id="@+id/btnReject"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:tooltipText="Reject Book Request"
+                app:icon="@drawable/ic_book_cancel"
+                app:iconGravity="textStart"
+                android:text="Reject"
+                android:textAllCaps="false"
+                app:layout_constraintStart_toEndOf="@id/btnAccept"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.5"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

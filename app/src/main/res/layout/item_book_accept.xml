@@ -106,7 +106,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Booker:"
+                android:text="Customer:"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -153,7 +153,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_weight="1"
                     android:lines="2"
-                    android:text="Teaa gkjdgkmkfmdksm sdkffdf fdf"
+                    android:text="TeaBack"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="@+id/cvAvatar"
@@ -167,7 +167,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:layout_marginEnd="10dp"
+                android:layout_marginEnd="76dp"
                 android:drawableStart="@drawable/ic_money_24"
                 android:drawableTint="@color/blue"
                 android:text="80"
@@ -176,7 +176,8 @@
                 android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="@+id/info2"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/price" />
+                app:layout_constraintTop_toBottomOf="@+id/price"
+                app:layout_constraintVertical_bias="0.4" />
 
             <TextView
                 android:id="@+id/StatusLabel"
@@ -225,8 +226,6 @@
                 android:src="@drawable/ic_outline_info_24"
                 app:tint="@color/white"
                 tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
-
         </LinearLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

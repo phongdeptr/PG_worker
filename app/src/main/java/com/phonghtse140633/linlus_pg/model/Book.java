@@ -15,6 +15,9 @@ public class Book {
     private float price;
     private BookStatus status;
     private String location;
+    private String deliveryLocation;
+    private LocalDate deliveryDate;
+    private Customer customer;
 
     public Book(int id, PhotoService bookingService, LocalDate bookingDate, LocalTime startingTime, float price, BookStatus status, String location) {
         this.id = id;
@@ -83,4 +86,31 @@ public class Book {
     public void setLocation(String location) {
         this.location = location;
     }
+
+    public String getDeliveryLocation() {
+        return deliveryLocation;
+    }
+
+    public void setDeliveryLocation(String deliveryLocation) {
+        this.deliveryLocation = deliveryLocation;
+    }
+
+    public LocalDate getDeliveryDate() {
+        return deliveryDate;
+    }
+
+    public void setDeliveryDate(LocalDate deliveryDate) {
+        this.deliveryDate = deliveryDate;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 }
+
+
+
