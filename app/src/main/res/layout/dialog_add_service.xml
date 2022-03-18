@@ -95,6 +95,12 @@
         android:paddingHorizontal="10dp"
         android:layout_marginHorizontal="20dp"/>
 
+    <ImageView
+        android:id="@+id/ivThumb"
+        android:scaleType="fitXY"
+        android:layout_width="100dp"
+        android:layout_height="100dp"/>
+
     <Button
         android:id="@+id/btnChooseThumbnails"
         android:layout_width="match_parent"

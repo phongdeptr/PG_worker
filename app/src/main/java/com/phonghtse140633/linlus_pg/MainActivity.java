@@ -1,6 +1,7 @@
 package com.phonghtse140633.linlus_pg;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentStatePagerAdapter;
@@ -8,7 +9,11 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.renderscript.ScriptGroup;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -24,6 +29,11 @@ import com.phonghtse140633.linlus_pg.fragments.FragmentCalendar;
 import com.phonghtse140633.linlus_pg.fragments.FragmentHome;
 import com.phonghtse140633.linlus_pg.fragments.FragmentPersonal;
 import com.phonghtse140633.linlus_pg.fragments.FragmentService;
+import com.phonghtse140633.linlus_pg.utils.FileUtils;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
