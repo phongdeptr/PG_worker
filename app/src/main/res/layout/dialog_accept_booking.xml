@@ -1,42 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#ffffffff">
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:id="@+id/a"
-        android:gravity="center"
-        android:background="#DA5F6A"
-        android:scaleType="fitCenter" />
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/tvCancelTitle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TEXTO"
-        android:id="@+id/text_dialog"
-        android:layout_below="@+id/a"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="68dp"
+        android:text="Accept Book Dialog"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvAccept"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="140dp"
+        android:text="Do you want to accept this booking ?"
         android:textSize="18sp"
-        android:textColor="#ff000000"
-        android:layout_centerHorizontal="true"
-        android:gravity="center_horizontal" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:layout_width="wrap_content"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCancelConfirm"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/blue"
+        android:text="Confirm"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvAccept"
+        app:layout_constraintWidth_percent="0.48" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnDismiss"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@color/blue_lavender"
+        android:text="Cancel"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        app:layout_constraintStart_toEndOf="@id/btnCancelConfirm"
+        app:layout_constraintTop_toBottomOf="@id/tvAccept"
+        app:layout_constraintWidth_percent="0.48" />
+
+    <TextView
+        android:id="@+id/tvResult"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="OK"
-        android:id="@+id/btn_dialog"
-        android:gravity="center_vertical|center_horizontal"
-        android:layout_below="@+id/text_dialog"
-        android:layout_marginBottom="20dp"
-        android:layout_centerHorizontal="true"
-        android:textColor="#ffffffff" />
-
-</RelativeLayout>
+        android:layout_marginTop="24dp"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tlCancelReason" />
+</androidx.constraintlayout.widget.ConstraintLayout>

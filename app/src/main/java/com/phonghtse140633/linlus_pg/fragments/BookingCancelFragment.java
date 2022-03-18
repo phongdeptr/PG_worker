@@ -79,6 +79,7 @@ public class BookingCancelFragment extends Fragment {
     }
     private void bind(){
         books = Utils.getBooksByStatus(BookStatus.CANCELED);
+        books.addAll(Utils.getBooksByStatus(BookStatus.REJECTED));
         bookAdapter = new BookAdapter(this.getContext(), books);
     }
 }

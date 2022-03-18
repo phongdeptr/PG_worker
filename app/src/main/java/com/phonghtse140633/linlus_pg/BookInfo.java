@@ -1,18 +1,11 @@
 package com.phonghtse140633.linlus_pg;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.BulletSpan;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -79,6 +72,8 @@ public class BookInfo extends AppCompatActivity implements IBookingAction {
         btnAccept = findViewById(R.id.btnAccept);
         btnReject = findViewById(R.id.btnReject);
         if(book.getStatus().equals(BookStatus.PENDING)){
+            btnAccept.setVisibility(View.VISIBLE);
+            btnReject.setVisibility(View.VISIBLE);
             btnCancel.setVisibility(View.GONE);
         }else{
             btnAccept.setVisibility(View.GONE);
@@ -92,11 +87,16 @@ public class BookInfo extends AppCompatActivity implements IBookingAction {
     private void config() {
         PhotoService service = book.getBookingService();
         Customer customer = book.getCustomer();
+        if(book.getStatus().equals(BookStatus.PENDING)){
+            btnAccept.setVisibility(View.VISIBLE);
+            btnReject.setVisibility(View.VISIBLE);
+            btnCancel.setVisibility(View.GONE);
+        }
         btnAccept.setOnClickListener(view -> {
-            onAccepted(book.getId());
+            openAcceptDialog(book.getId());
         });
         btnReject.setOnClickListener(view -> {
-            onRejected(book.getId());
+            openRejectDialog(book.getId());
         });
         List<String> options = new ArrayList<>();
         options.add("\u2022 2x A4 picture\n");
@@ -119,9 +119,10 @@ public class BookInfo extends AppCompatActivity implements IBookingAction {
         if(book.getStatus().equals(BookStatus.ACCEPTED)){
             btnCancel.setVisibility(View.VISIBLE);
         }else{
-
+            btnCancel.setVisibility(View.GONE);
         }
-        btnCancel.setOnClickListener(view -> {openDialog();});
+        btnCancel.setOnClickListener(view -> {
+            openCancelDialog(book.getId());});
     }
 
     @Override
@@ -133,9 +134,10 @@ public class BookInfo extends AppCompatActivity implements IBookingAction {
         book.setStatus(BookStatus.ACCEPTED);
         tvStatus.setText(BookStatus.ACCEPTED.name());
         btnAccept.setVisibility(View.GONE);
+        btnCancel.setVisibility(View.VISIBLE);
         btnReject.setVisibility(View.GONE);
-        action_bar.setVisibility(View.GONE);
-        footerSpace.setVisibility(View.GONE);
+        action_bar.setVisibility(View.VISIBLE);
+        footerSpace.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -144,6 +146,16 @@ public class BookInfo extends AppCompatActivity implements IBookingAction {
         tvStatus.setText(BookStatus.REJECTED.name());
         btnAccept.setVisibility(View.GONE);
         btnReject.setVisibility(View.GONE);
+        btnCancel.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onCanceled(Object id) {
+        book.setStatus(BookStatus.CANCELED);
+        tvStatus.setText(BookStatus.CANCELED.name());
+        btnAccept.setVisibility(View.GONE);
+        btnReject.setVisibility(View.GONE);
+        btnCancel.setVisibility(View.GONE);
     }
 
     @Override
@@ -151,7 +163,7 @@ public class BookInfo extends AppCompatActivity implements IBookingAction {
 
     }
 
-    public void openDialog(){
+    public void openCancelDialog(int id){
         Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_cancel);
         dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -161,11 +173,54 @@ public class BookInfo extends AppCompatActivity implements IBookingAction {
         btnConfirm.setOnClickListener((view1) ->{
             Pattern pattern = Pattern.compile("[a-zA-Z0-9]+");
             if(!pattern.matcher(editText.getText().toString()).matches()){
-                Toast.makeText(this, "Enter reason to continue", Toast.LENGTH_LONG);
+                Toast.makeText(this, "Enter reason to continue", Toast.LENGTH_LONG).show();
                 return;
             }else {
-                Toast.makeText(this, "Cancel Success",Toast.LENGTH_LONG);
+                Toast.makeText(this, "Cancel Success",Toast.LENGTH_LONG).show();
+                onCanceled(id);
+                dialog.dismiss();
             }
+        });
+        btnCancel.setOnClickListener(view1 -> {
+            dialog.dismiss();
+        });
+        dialog.show();
+    }
+
+    public void openRejectDialog(int id){
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_cancel);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        TextView tvCancelTitle = dialog.findViewById(R.id.tvCancelTitle);
+        TextInputEditText editText = dialog.findViewById(R.id.etCancelReason);
+        MaterialButton btnConfirm = dialog.findViewById(R.id.btnCancelConfirm);
+        MaterialButton btnCancel = dialog.findViewById(R.id.btnDismiss);
+        tvCancelTitle.setText("Reject Book Dialog");
+        btnConfirm.setOnClickListener((view1) ->{
+            Pattern pattern = Pattern.compile("[a-zA-Z0-9]+");
+            if(!pattern.matcher(editText.getText().toString()).matches()){
+                Toast.makeText(this, "Enter reason to continue", Toast.LENGTH_LONG).show();
+            }else {
+                onRejected(id);
+                Toast.makeText(this, "Reject Success",Toast.LENGTH_LONG).show();
+                dialog.dismiss();
+            }
+        });
+        btnCancel.setOnClickListener(view1 -> {
+            dialog.dismiss();
+        });
+        dialog.show();
+    }
+
+    public void openAcceptDialog(int id){
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_accept_booking);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        MaterialButton btnConfirm = dialog.findViewById(R.id.btnCancelConfirm);
+        MaterialButton btnCancel = dialog.findViewById(R.id.btnDismiss);
+        btnConfirm.setOnClickListener((view1) ->{
+            Toast.makeText(this, "Accept Success",Toast.LENGTH_LONG).show();
+            onAccepted(id);
             dialog.dismiss();
         });
         btnCancel.setOnClickListener(view1 -> {

@@ -11,12 +11,14 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
 import com.phonghtse140633.linlus_pg.BookInfo;
 import com.phonghtse140633.linlus_pg.MainActivity2;
 import com.phonghtse140633.linlus_pg.R;
@@ -30,6 +32,7 @@ import org.w3c.dom.Text;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class BookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  implements IBookingAction {
     private Context context;
@@ -125,10 +128,11 @@ public class BookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
                         onDetailed(book.getId());
                     }));
                     pendingBookViewHolder.btnAccept.setOnClickListener(view -> {
-                        onAccepted(book.getId());
+                        openAcceptDialog(book.getId());
                     });
                     pendingBookViewHolder.btnReject.setOnClickListener(view -> {
-                        onRejected(book.getId());
+                        openRejectDialog(book.getId()
+                        );
                     });
                     break;
                 }
@@ -198,20 +202,20 @@ public class BookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
     public void onAccepted(Object id) {
         Book book = Utils.getBooking((int) id);
         book.setStatus(BookStatus.ACCEPTED);
-        bookList = Utils.getBooksByStatus(BookStatus.ACCEPTED);
+//        bookList = Utils.getBooksByStatus(BookStatus.ACCEPTED);
         this.notifyDataSetChanged();
-        Intent intent = new Intent(context, MainActivity2.class);
-        context.startActivity(intent);
+//        Intent intent = new Intent(context, MainActivity2.class);
+//        context.startActivity(intent);
     }
 
     @Override
     public void onRejected(Object id) {
         Book book = Utils.getBooking((int) id);
         book.setStatus(BookStatus.REJECTED);
-        bookList = Utils.getBooksByStatus(BookStatus.REJECTED);
+//        bookList = Utils.getBooksByStatus(BookStatus.REJECTED);
         this.notifyDataSetChanged();
-        Intent intent = new Intent(context, MainActivity2.class);
-        context.startActivity(intent);
+//        Intent intent = new Intent(context, MainActivity2.class);
+//        context.startActivity(intent);
 
     }
 
@@ -219,10 +223,18 @@ public class BookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
     public void onCompleted(Object id) {
         Book book = Utils.getBooking((int) id);
         book.setStatus(BookStatus.COMPLETED);
-        bookList = Utils.getBooksByStatus(BookStatus.REJECTED);
+        bookList = Utils.getBooksByStatus(BookStatus.COMPLETED);
         this.notifyDataSetChanged();
-        Intent intent = new Intent(context, MainActivity2.class);
-        context.startActivity(intent);
+//        Intent intent = new Intent(context, MainActivity2.class);
+//        context.startActivity(intent);
+    }
+
+    @Override
+    public void onCanceled(Object id) {
+        Book book = Utils.getBooking((int) id);
+        book.setStatus(BookStatus.CANCELED);
+//        bookList = Utils.getBooksByStatus(BookStatus.CANCELED);
+        this.notifyDataSetChanged();
     }
 
     public class AcceptBookViewHolder extends RecyclerView.ViewHolder {
@@ -312,4 +324,45 @@ public class BookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
         }
     }
 
+    public void openRejectDialog(int id){
+        Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.dialog_cancel);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        TextView tvCancelTitle = dialog.findViewById(R.id.tvCancelTitle);
+        TextInputEditText editText = dialog.findViewById(R.id.etCancelReason);
+        MaterialButton btnConfirm = dialog.findViewById(R.id.btnCancelConfirm);
+        MaterialButton btnCancel = dialog.findViewById(R.id.btnDismiss);
+        tvCancelTitle.setText("Reject Book Dialog");
+        btnConfirm.setOnClickListener((view1) ->{
+            Pattern pattern = Pattern.compile("[a-zA-Z0-9]+");
+            if(!pattern.matcher(editText.getText().toString()).matches()){
+                Toast.makeText(context, "Enter reason to continue", Toast.LENGTH_LONG).show();
+            }else {
+                Toast.makeText(context, "Reject Success",Toast.LENGTH_LONG).show();
+                onRejected(id);
+                dialog.dismiss();
+            }
+        });
+        btnCancel.setOnClickListener(view1 -> {
+            dialog.dismiss();
+        });
+        dialog.show();
+    }
+
+    public void openAcceptDialog(int id){
+        Dialog dialog = new Dialog(context);
+        dialog.setContentView(R.layout.dialog_accept_booking);
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        MaterialButton btnConfirm = dialog.findViewById(R.id.btnCancelConfirm);
+        MaterialButton btnCancel = dialog.findViewById(R.id.btnDismiss);
+        btnConfirm.setOnClickListener((view1) ->{
+            Toast.makeText(context, "Accept Success",Toast.LENGTH_LONG).show();
+            onAccepted(id);
+            dialog.dismiss();
+        });
+        btnCancel.setOnClickListener(view1 -> {
+            dialog.dismiss();
+        });
+        dialog.show();
+    }
 }

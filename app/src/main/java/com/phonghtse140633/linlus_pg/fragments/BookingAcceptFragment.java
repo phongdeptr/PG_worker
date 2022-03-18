@@ -2,11 +2,13 @@ package com.phonghtse140633.linlus_pg.fragments;
 
 import static com.phonghtse140633.linlus_pg.constants.Constants.MAPVIEW_BUNDLE_KEY;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +17,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.maps.MapView;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
 import com.phonghtse140633.linlus_pg.R;
 import com.phonghtse140633.linlus_pg.adapters.BookAdapter;
 import com.phonghtse140633.linlus_pg.enums.BookStatus;
@@ -23,6 +27,7 @@ import com.phonghtse140633.linlus_pg.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class BookingAcceptFragment extends Fragment {
     private RecyclerView rvBook;
@@ -88,10 +93,6 @@ public class BookingAcceptFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
-    private void loadPendingBookings() {
-
-    }
-
     private void loadBookings(List<Book> books) {
         bookAdapter = new BookAdapter(getContext(), books);
         rvBook.setAdapter(bookAdapter);
@@ -104,4 +105,5 @@ public class BookingAcceptFragment extends Fragment {
         super.onSaveInstanceState(outState);
         Bundle mapViewBundle = outState.getBundle(MAPVIEW_BUNDLE_KEY);
     }
+
 }

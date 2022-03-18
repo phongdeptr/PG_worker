@@ -5,4 +5,5 @@ public interface IBookingAction {
     void onAccepted(Object id);
     void onRejected(Object id);
     void onCompleted(Object id);
+    void onCanceled(Object id);
 }

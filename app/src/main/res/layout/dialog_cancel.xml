@@ -4,13 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <ImageView
-        android:layout_margin="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_close_cross"
-        android:layout_width="32dp"
-        android:layout_height="32dp"/>
 
     <TextView
         android:id="@+id/tvCancelTitle"
@@ -20,7 +13,7 @@
         android:layout_marginTop="68dp"
         android:text="Cancel Book Dialog"
         android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+        android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,7 +27,8 @@
         app:helperTextTextColor="@color/red"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvCancelTitle"
-        app:startIconDrawable="@drawable/ic_book_cancel">
+        app:startIconDrawable="@drawable/ic_book_cancel"
+        app:startIconTint="@color/blue">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etCancelReason"
@@ -49,8 +43,11 @@
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="80dp"
-        android:backgroundTint="@color/red"
+        android:backgroundTint="@color/blue"
         android:text="Confirm"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tlCancelReason"
         app:layout_constraintWidth_percent="0.48" />
@@ -61,8 +58,11 @@
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="80dp"
-        android:backgroundTint="@color/light_grey"
-        android:text="Dismiss"
+        android:backgroundTint="@color/blue_lavender"
+        android:text="Cancel"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textAllCaps="false"
         app:layout_constraintStart_toEndOf="@id/btnCancelConfirm"
         app:layout_constraintTop_toBottomOf="@id/tlCancelReason"
         app:layout_constraintWidth_percent="0.48" />
